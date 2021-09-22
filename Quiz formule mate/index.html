@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1, shrink-to-fit=no"
+		/>
+		<!-- Bootstrap-->
+		<link
+			rel="stylesheet"
+			href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		/>
+		<!-- Google Material Icons -->
+		<link
+			href="https://fonts.googleapis.com/icon?family=Material+Icons"
+			rel="stylesheet"
+		/>
+		
+		<link rel="stylesheet" href="brain/css/style.css" />
+		<title>Chestionar mate</title>
+		<link rel="icon" type="image/png" href="brain/img/fav.png" />
+	</head>
+	<body onload="chkUser()">
+		<div class="container box-shadow">
+			
+			<div id="username">
+				<form class="form" onsubmit="return false;">
+					<i class="material-icons">face</i>
+					<h2>Cum te cheama?</h2>
+					<div class="form-group mx-sm-3 mb-3 passBox">
+						<label for="pass" class="sr-only">Nume</label>
+						<input
+							type="text"
+							class="form-control"
+							id="uname"
+							placeholder="Nume"
+							onfocus="this.style.borderColor = '#007bff'"
+							onblur="this.style.borderColor = '#ced4da'"
+						/>
+					</div>
+					<button
+						type="submit"
+						class="btn btn-primary mb-2"
+						onclick="askPass();"
+					>
+						Continua
+					</button>
+				</form>
+			</div>
+			
+			<div id="theForm">
+				<form class="form" onsubmit="return false;">
+					<i class="material-icons finger-print">https</i>
+					<i class="material-icons warning">warning</i>
+					<i class="material-icons success">done_all</i>
+					<h2
+						id="errH"
+						style="font-weight:bold;font-size:1.7em;margin-bottom: 30px;"
+					></h2>
+					<h2 id="err"></h2>
+					<div class="form-group mx-sm-3 mb-3 passBox">
+						<label for="pass" class="sr-only">Cod</label>
+						<input
+							type="password"
+							class="form-control animated"
+							id="pass"
+							placeholder="cod"
+							onkeyup="typing();"
+							onfocus="resetErr();"
+							onblur="this.style.borderColor = '#ced4da';"
+						/>
+					</div>
+					<button
+						type="submit"
+						disabled="disabled"
+						class="btn btn-primary mb-2"
+						id="submit"
+						onclick="chkPass(this);"
+					>
+						Confirma cod
+					</button>
+				</form>
+			</div>
+
+			
+			<section id="theQuiz">
+				<form id="quizForm" onsubmit="return false;">
+					<h2>Chestionar mate:</h2>
+
+					<div id="steps" style="text-align:center;">
+					</div>
+
+					<hr />
+					<div id="tab">
+						<p id="que">---Question---</p>
+						<hr />
+						<div class="custom-control custom-radio">
+							<input
+								type="radio"
+								id="opt1"
+								name="q"
+								class="custom-control-input"
+								onclick="enableBtn(this)"
+								value="1"
+							/>
+							<label
+								class="custom-control-label"
+								onclick="var id = this.previousElementSibling.id; this.setAttribute('for', id)"
+								>---Option 1---</label
+							>
+						</div>
+						<div class="custom-control custom-radio">
+							<input
+								type="radio"
+								id="opt2"
+								name="q"
+								class="custom-control-input"
+								onclick="enableBtn(this)"
+								value="2"
+							/>
+							<label
+								class="custom-control-label"
+								onclick="var id = this.previousElementSibling.id; this.setAttribute('for', id)"
+								>---Option 2---</label
+							>
+						</div>
+						<div class="custom-control custom-radio">
+							<input
+								type="radio"
+								id="opt3"
+								name="q"
+								class="custom-control-input"
+								onclick="enableBtn(this)"
+								value="3"
+							/>
+							<label
+								class="custom-control-label"
+								onclick="var id = this.previousElementSibling.id; this.setAttribute('for', id)"
+								>---Option 3---</label
+							>
+						</div>
+						<div class="custom-control custom-radio">
+							<input
+								type="radio"
+								id="opt4"
+								name="q"
+								class="custom-control-input"
+								onclick="enableBtn(this)"
+								value="4"
+							/>
+							<label
+								class="custom-control-label"
+								onclick="var id = this.previousElementSibling.id; this.setAttribute('for', id)"
+								>---Option 4---</label
+							>
+						</div>
+					</div>
+
+					<div style="overflow:auto;">
+						<div style="float:right;">
+							<button
+								type="button"
+								disabled="disabled"
+								class="btn btn-info mb-2"
+								id="next-button"
+								onclick="next();"
+							>
+								Continua
+							</button>
+						</div>
+					</div>
+				</form>
+			</section>
+
+			
+			<section id="theResult">
+				<div id="resultCircle">
+					Calculam rezulatul...
+				</div>
+				<br />
+				<h2 id="resultFb" style="font-weight: bold;"></h2>
+				<h3 id="correctAns"></h3>
+				<hr />
+				<button class="btn btn-info" onclick="retakeQuiz();">
+					Inca o data!
+				</button>
+			</section>
+		</div>
+		<button
+			class="btn btn-danger"
+			style="position:absolute; bottom:5px; right:5px;"
+			onclick="logout();"
+			id="logoutBtn"
+		>
+			Iesire din cont
+		</button>
+
+		<!-- Optional JavaScript -->
+		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+		<script src="brain/js/questions.js"></script>
+		<script src="brain/js/script.js"></script>
+	</body>
+</html>
